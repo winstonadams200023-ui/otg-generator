@@ -5,6 +5,7 @@ function App() {
   const [otp, setOtp] = useState(null);
   const [timeLeft, setTimeLeft] = useState(0);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [copied,setCopied] = useState(false);
   const timerRef = useRef(null);
 
   // 1. Standalone timer function
@@ -36,6 +37,14 @@ function App() {
     }, 600);
   };
 
+  const copyToClipboard = () => {
+    if (otp) {
+      navigator.clipboard.writeText(otp);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
   useEffect(() => {
     return () => clearInterval(timerRef.current);
   }, []);
@@ -63,6 +72,9 @@ function App() {
       {otp && !isGenerating && (
         <div>
           <h2>Your OTP: {otp}</h2>
+          <button onClick={copyToClipboard} style={{ marginTop: '5px', padding: '6px 12px', fontSize: '0.85rem' }}>
+            {copied ? "Copied! ✓" : "Copy to Clipboard"}
+          </button>
         </div>
       )}
 
