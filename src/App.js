@@ -54,9 +54,9 @@ function App() {
       <h1>OTP Generator</h1>
       <button 
         onClick={generateOtp} 
-        disabled={isGenerating}
+        disabled={isGenerating || timeLeft > 0}
       >
-        {isGenerating ? "Generating..." : "Generate OTP"}
+        {isGenerating ? "Generating..." : timeLeft > 0 ? `Wait (${timeLeft}s)` : "Generate OTP"}
       </button>
 
       <p id="otp-timer" aria-live="polite">
