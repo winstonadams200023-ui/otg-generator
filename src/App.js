@@ -28,7 +28,7 @@ function App() {
     setTimeout(() => {
       const newOtp = Math.floor(100000 + Math.random() * 900000).toString();
       setOtp(newOtp);
-      setTimeLeft(10);
+      setTimeLeft(30);
       setIsGenerating(false);
 
       // 2. Call the timer function here
